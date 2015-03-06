@@ -4,12 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/DFA.cpp \
 ../src/LexicalAnalyzerGenerator.cpp 
 
 OBJS += \
+./src/DFA.o \
 ./src/LexicalAnalyzerGenerator.o 
 
 CPP_DEPS += \
+./src/DFA.d \
 ./src/LexicalAnalyzerGenerator.d 
 
 

@@ -11,5 +11,7 @@ using namespace std;
 
 int main() {
 	cout << "!!!Hello World!!!^__^" << endl; // prints !!!Hello World!!!
+	int x = 1232312;
+	cout  << x << endl;
 	return 0;
 }
