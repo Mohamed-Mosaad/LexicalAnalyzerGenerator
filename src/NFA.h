@@ -9,19 +9,14 @@
 #define NFA_H_
 
 #include "Node.h"
-#include <vector>
 
 using namespace std;
 
 class NFA {
 public:
 	NFA();
+	NFA(char c);
 	virtual ~NFA();
-
-//	vector<Node*> node;
-
-	NFA* Or(NFA* a, NFA* b);
-	NFA* And(NFA* a, NFA* b);
 
 	Node* start;
 	Node* accept;

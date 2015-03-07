@@ -6,7 +6,7 @@
  */
 
 #include "Node.h"
-#include <vector>
+
 
 using namespace std;
 
@@ -15,6 +15,13 @@ Node::Node() {
 }
 
 Node::~Node() {
-	// TODO Auto-generated destructor stub
+
+}
+
+int Node::getState(){
+	return state;
+}
+void Node::setState(int newState){
+	state=newState;
 }
 
