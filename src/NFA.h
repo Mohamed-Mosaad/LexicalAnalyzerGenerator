@@ -18,9 +18,10 @@ public:
 	NFA();
 	virtual ~NFA();
 
-	vector<Node*> node;
+//	vector<Node*> node;
 
-	NFA Or(NFA a, NFA b);
+	NFA* Or(NFA* a, NFA* b);
+	NFA* And(NFA* a, NFA* b);
 
 	Node* start;
 	Node* accept;

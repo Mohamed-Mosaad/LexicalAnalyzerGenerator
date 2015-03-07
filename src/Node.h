@@ -19,7 +19,8 @@ public:
 	Node();
 	virtual ~Node();
 
-	vector< pair<Node*, char> > v;
+	vector< pair<Node*, char> > next;
+
 };
 
 #endif /* NODE_H_ */
