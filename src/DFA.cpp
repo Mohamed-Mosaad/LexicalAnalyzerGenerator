@@ -7,8 +7,8 @@
 
 #include "DFA.h"
 
+
 DFA::DFA() {
-	// TODO Auto-generated constructor stub
 
 }
 

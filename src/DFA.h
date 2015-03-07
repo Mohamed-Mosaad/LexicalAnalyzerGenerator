@@ -12,6 +12,7 @@ class DFA {
 public:
 	DFA();
 	virtual ~DFA();
+
 };
 
 #endif /* DFA_H_ */

@@ -5,15 +5,21 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../src/DFA.cpp \
-../src/LexicalAnalyzerGenerator.cpp 
+../src/LexicalAnalyzerGenerator.cpp \
+../src/NFA.cpp \
+../src/Node.cpp 
 
 OBJS += \
 ./src/DFA.o \
-./src/LexicalAnalyzerGenerator.o 
+./src/LexicalAnalyzerGenerator.o \
+./src/NFA.o \
+./src/Node.o 
 
 CPP_DEPS += \
 ./src/DFA.d \
-./src/LexicalAnalyzerGenerator.d 
+./src/LexicalAnalyzerGenerator.d \
+./src/NFA.d \
+./src/Node.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
