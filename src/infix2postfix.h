@@ -32,6 +32,7 @@
 #include<cstring>
 #include<stack>
 #include <unordered_map>
+#include "Operation.cpp"
 class infix2postfix {
 public:
 	infix2postfix();
