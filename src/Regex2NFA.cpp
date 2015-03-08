@@ -7,12 +7,13 @@
 
 #include "Regex2NFA.h"
 
-Regex2NFA::Regex2NFA() {
+Regex2NFA::Regex2NFA(string exp) {
 	// TODO Auto-generated constructor stub
-
+	expression=exp;
 }
 
 Regex2NFA::~Regex2NFA() {
 	// TODO Auto-generated destructor stub
 }
+
 

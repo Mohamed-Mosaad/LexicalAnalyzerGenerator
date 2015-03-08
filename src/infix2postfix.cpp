@@ -22,32 +22,7 @@ infix2postfix::~infix2postfix() {
  *      Author: mos3aad
  */
 
-#include <cstring>
-#include <vector>
-#include <list>
-#include <map>
-#include <set>
-#include <deque>
-#include <stack>
-#include <bitset>
-#include <algorithm>
-#include <functional>
-#include <numeric>
-#include <utility>
-#include <sstream>
-#include <iostream>
-#include <iomanip>
-#include <cstdio>
-#include <cmath>
-#include <cstdlib>
-#include <ctime>
-#include <memory.h>
-#include <cassert>
-#include<iostream>
-#include<cstring>
-#include<stack>
-#include <unordered_map>
-using namespace std;
+
 
 // get weight of operators as per precedence
 // higher weight given to operators with higher precedence
