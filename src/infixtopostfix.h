@@ -20,9 +20,19 @@
 class infixtopostfix {
 public:
 	infixtopostfix();
-	NFA* infixtopostfix1(string infix, int size);
+	string infixtopostfix1(string infix, int size);
+
+	NFA*  postfixToNFA(string postfix);
+
 	int getWeight(char ch);
 	virtual ~infixtopostfix();
+
+
+	char AND;
+	char OR;
+	char KLEENE;
+	char POSITIVE;
+
 };
 
 #endif /* INFIXtoPOSTFIX_H_ */

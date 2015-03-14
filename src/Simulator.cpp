@@ -7,9 +7,9 @@
 
 #include "Simulator.h"
 
-Simulator::Simulator(string fileName,vector <char>) {
+Simulator::Simulator(string fileName,vector <char> _possible_input) {
 	freopen(fileName.c_str(), "r", stdin);
-
+	possible_input=_possible_input;
 	eof = false;
 	index = 0;
 }
@@ -48,8 +48,15 @@ void Simulator::tokenizer() {
 }
 
 void Simulator:: simulate(vector<vector<Dstate *> > DFA_table,string token){
-	Node* start =DFA_table[0][0];
+//	Node* start =DFA_table[0][0];
+	int index=0;
+		map<char,int> charToIndex;
+		for(int i=0;i<possible_input.size();i++){
+			charToIndex[possible_input[i]]=i+1;
+		}
+	while(index<token.length()){
 
+	}
 
 
 }

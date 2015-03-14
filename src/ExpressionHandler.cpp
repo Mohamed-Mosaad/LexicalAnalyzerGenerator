@@ -12,7 +12,12 @@ ExpressionHandler::ExpressionHandler(string fileName) {
 	scan = new Scanner(fileName);
 	specialOperators = "|(";
 	validOp = "|-+*)";
-	catChar = "&";
+	stringstream ss;
+
+		char c = 10;
+		ss << c;
+		ss >> catChar;
+
 	interpreter();
 }
 void ExpressionHandler::interpreter() {

@@ -9,6 +9,10 @@
 using namespace std;
 infixtopostfix::infixtopostfix() {
 	// TODO Auto-generated constructor stub
+	AND=10;
+	OR=6;
+	KLEENE=7;
+	POSITIVE=8;
 
 }
 
@@ -22,18 +26,16 @@ infixtopostfix::~infixtopostfix() {
  *      Author: mos3aad
  */
 
-
-
 // get weight of operators as per precedence
 // higher weight given to operators with higher precedence
 // for non operators, return 0
-int infixtopostfix:: getWeight(char ch) {
+int infixtopostfix::getWeight(char ch) {
 	switch (ch) {
 	case '+':
 		return 3;
 	case '*':
 		return 3;
-	case '~':
+	case '&':
 		return 2;
 	case '|':
 		return 1;
@@ -43,31 +45,49 @@ int infixtopostfix:: getWeight(char ch) {
 }
 
 // convert infix expression to postfix using a stack
-NFA* infixtopostfix:: infixtopostfix1(string infix, int size) {
+string infixtopostfix::infixtopostfix1(string infix, int size) {
+
 	stack<char> s;
 	//map <char, NFA> map;
-	string postfix="";
+	string postfix = "";
 	int weight;
 	int i = 0;
 	int k = 0;
 	char ch;
 	// iterate over the infix expression
-	 bool preceded_by_slash=false;
+	bool preceded_by_slash = false;
 	while (i < size) {
 
 		ch = infix[i];
-		if(ch=='\\'){
-			preceded_by_slash=true;
+		if (ch == '\\') {
+			preceded_by_slash = true;
+			i++;
 			continue;
 		}
-		if(preceded_by_slash){
-			preceded_by_slash=false;
-			postfix+= s.top();
+		if (preceded_by_slash) {
+			preceded_by_slash = false;
+			postfix += ch;
 			k++;
+			i++;
 			continue;
 
 		}
+
+		if (ch == '+') {
+			ch=POSITIVE;
+
+		} else if (ch == '|') {
+			ch=OR;
+
+		} else if (ch == '&') {
+			ch=AND;
+
+		} else if (ch == '*') {
+			ch=KLEENE;
+
+		}
 		if (ch == '(') {
+
 			// simply push the opening parenthesis
 			s.push(ch);
 			i++;
@@ -79,7 +99,7 @@ NFA* infixtopostfix:: infixtopostfix1(string infix, int size) {
 			// the postfix expression till we encounter
 			// a opening parenthesis
 			while (!s.empty() && s.top() != '(') {
-				postfix+= s.top();
+				postfix += s.top();
 				k++;
 				s.pop();
 
@@ -95,7 +115,7 @@ NFA* infixtopostfix:: infixtopostfix1(string infix, int size) {
 		if (weight == 0) {
 			// we saw an operand
 			// simply append it to postfix expression
-			postfix+= ch;
+			postfix += ch;
 			k++;
 
 		} else {
@@ -112,7 +132,7 @@ NFA* infixtopostfix:: infixtopostfix1(string infix, int size) {
 				// the current operator
 				while (!s.empty() && s.top() != '('
 						&& weight <= getWeight(s.top())) {
-					postfix+= s.top();
+					postfix += s.top();
 					k++;
 					s.pop();
 
@@ -126,16 +146,87 @@ NFA* infixtopostfix:: infixtopostfix1(string infix, int size) {
 	// pop of the remaining operators present in the stack
 	// and append it to postfix expression
 	while (!s.empty()) {
-		postfix+= s.top();
+		postfix += s.top();
 		k++;
 		s.pop();
 	}
 	//postfix[ = 0; // null terminate the postfix expression
-	cout <<"Postfix :"<<postfix<<endl;
+	//cout <<"Postfix :"<<postfix<<endl;
 
 	// Added 8/3/2015 by 3M.A.N
+//
+//
+//	for (int i = postfix.size()-1; i >= 0; i--) {
+//		s.push(postfix[i]);
+//	}
+//	NFA* result = new NFA();// will contain the final NFA for the given expression
+//
+//	char operand1 = s.top();
+//	s.pop();
+//	if (s.empty()) { // Regex consists of only 1 element
+//		result = new NFA(operand1);
+//	} else {
+//		char c2 = s.top();
+//		s.pop();
+//
+//		if (c2 == '*' || c2 == '+') { // c2 is operator (unary operator)
+//			NFA* op1 = new NFA(operand1);
+//			if (c2 == '*') {
+//				result = Operation::KleenClosure(op1);
+//			} else {
+//				result = Operation::positiveClosure(op1);
+//
+//			}
+//		} else { // c2  is  an operand
+//
+//			char op_rator = s.top();
+//			s.pop();
+//			//cout<<operand1<<" "<<op_rator<<" "<<c2<<endl;
+//		//	cout<<s.size()<<endl;
+//			NFA* op1 = new NFA(operand1);
+//			NFA* op2 = new NFA(c2);
+//			if (op_rator == '|') {
+//				//cout<<"hna"<<endl;
+//				result = Operation::Or(op1, op2);
+//			} else {
+//				result = Operation::And(op1, op2);
+//
+//			}
+//
+//		}
+//	}
+//
+//	//cout<<s.size()<<endl;
+//	while (!s.empty()) {
+//		char c=s.top();// may be uniary operator or operand waiting for its operator
+//		s.pop();
+//		if(c=='+'){
+//			result = Operation::positiveClosure(result);
+//
+//		}else if (c=='*'){
+//			result = Operation::KleenClosure(result);
+//		}else {
+//			NFA* op2= new NFA(c);
+//			char opertor =s.top();
+//			s.pop();
+//			if(opertor=='|'){
+//				result = Operation::Or(result,op2);
+//			}else{
+//				result = Operation::And(result,op2);
+//
+//			}
+//		}
+//
+//	}
+//	//cout<<"Shady";
+	return postfix;
+}
 
-	for (int i = postfix.size()-1; i >= 0; i--) {
+NFA* infixtopostfix::postfixToNFA(string postfix) {
+
+	stack<char> s;
+	cout << postfix << endl;
+	for (int i = postfix.size() - 1; i >= 0; i--) {
 		s.push(postfix[i]);
 	}
 	NFA* result = new NFA();// will contain the final NFA for the given expression
@@ -148,9 +239,9 @@ NFA* infixtopostfix:: infixtopostfix1(string infix, int size) {
 		char c2 = s.top();
 		s.pop();
 
-		if (c2 == '*' || c2 == '+') { // c2 is operator (unary operator)
+		if (c2 == KLEENE || c2 == POSITIVE) { // c2 is operator (unary operator)
 			NFA* op1 = new NFA(operand1);
-			if (c2 == '*') {
+			if (c2 == KLEENE) {
 				result = Operation::KleenClosure(op1);
 			} else {
 				result = Operation::positiveClosure(op1);
@@ -160,10 +251,12 @@ NFA* infixtopostfix:: infixtopostfix1(string infix, int size) {
 
 			char op_rator = s.top();
 			s.pop();
-		//	cout<<operand1<<" "<<op_rator<<" "<<c2<<endl;
+			//cout<<operand1<<" "<<op_rator<<" "<<c2<<endl;
+			//	cout<<s.size()<<endl;
 			NFA* op1 = new NFA(operand1);
 			NFA* op2 = new NFA(c2);
-			if (op_rator == '|') {
+			if (op_rator == OR) {
+				//cout<<"hna"<<endl;
 				result = Operation::Or(op1, op2);
 			} else {
 				result = Operation::And(op1, op2);
@@ -175,31 +268,32 @@ NFA* infixtopostfix:: infixtopostfix1(string infix, int size) {
 
 	//cout<<s.size()<<endl;
 	while (!s.empty()) {
-		char c=s.top();// may be uniary operator or operand waiting for its operator
+		char c = s.top();// may be uniary operator or operand waiting for its operator
 		s.pop();
-		if(c=='+'){
+		if (c == POSITIVE) {
 			result = Operation::positiveClosure(result);
 
-		}else if (c=='*'){
+		} else if (c == KLEENE) {
 			result = Operation::KleenClosure(result);
-		}else {
-			NFA* op2= new NFA(c);
-			char opertor =s.top();
+		} else {
+			NFA* op2 = new NFA(c);
+			char opertor = s.top();
 			s.pop();
-			if(opertor=='|'){
-				result = Operation::Or(result,op2);
-			}else{
-				result = Operation::And(result,op2);
+			if (opertor == OR) {
+				result = Operation::Or(result, op2);
+			} else {
+				result = Operation::And(result, op2);
 
 			}
 		}
 
 	}
+	//cout<<"Shady";
 	return result;
+
 }
 
-
-
+//
 //int main() {
 //
 //	string infix = "(\+)|(-)";

@@ -28,7 +28,7 @@ using namespace std;
 class Simulator {
 public:
 
-	Simulator(string fileName,vector<char>);
+	Simulator(string fileName,vector<char> _possible_input);
 		string getNextToken();
 		bool isOperator(char token);
 		void tokenizer();
@@ -44,6 +44,7 @@ private:
 		int index;
 		vector<string> tokens;
 		vector<vector<Dstate *> > table;
+		vector<char> possible_input;
 
 	virtual ~Simulator();
 };
