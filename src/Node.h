@@ -14,6 +14,7 @@
 #define ACCEPT 2
 
 #include <vector>
+#include <string>
 
 const char epsillon='\L';
 
@@ -29,10 +30,13 @@ public:
 	vector< pair<Node*, char> > next;
 	int getState();
 	void setState(int newState);
+	string getType();
+	void setType(string newType);
 	int id;
 
 private:
 	int state;
+	string type;
 };
 
 #endif /* NODE_H_ */

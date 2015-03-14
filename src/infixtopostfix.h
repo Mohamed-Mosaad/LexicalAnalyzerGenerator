@@ -29,7 +29,7 @@ public:
 
 
 	char AND;
-	char OR;
+	//char OR;
 	char KLEENE;
 	char POSITIVE;
 

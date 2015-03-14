@@ -14,6 +14,8 @@ int num=0;
 Node::Node() {
 	id=num;
 	num++;
+
+	Operation::nodeMap[id]=this;
 }
 
 Node::~Node() {
@@ -27,3 +29,10 @@ void Node::setState(int newState){
 	state=newState;
 }
 
+
+string Node::getType(){
+	return type;
+}
+void Node::setType(string newType){
+	type=newType;
+}

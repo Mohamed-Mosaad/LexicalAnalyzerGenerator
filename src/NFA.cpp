@@ -6,8 +6,7 @@
  */
 
 #include "NFA.h"
-
-using namespace std;
+#include "Operation.cpp"
 
 
 NFA::NFA() {
@@ -16,6 +15,8 @@ NFA::NFA() {
 	start->setState(START);
 	accept = new Node();
 	accept->setState(ACCEPT);
+
+//	cout<<"NFA Empty Constructor\n";
 }
 
 NFA::NFA(char c) {
@@ -25,7 +26,20 @@ NFA::NFA(char c) {
 	accept = new Node();
 	accept->setState(ACCEPT);
 
+	bool found=false;
+	for(int i=0;i<(int)Operation::CharVector.size();i++){
+		if(Operation::CharVector.at(i)==c){
+			found=true;
+			break;
+		}
+	}
+	if(!found)
+		Operation::CharVector.push_back(c);
+
 	start->next.push_back(make_pair(accept, c));
+
+//	cout<<"NFA "<<c<<" Constructor\n";
+
 }
 
 NFA::~NFA() {

@@ -1,19 +1,27 @@
+/*
+ * Operation.cpp
+ *
+ *  Created on: Mar 14, 2015
+ *      Author: user
+ */
+
+#include "Operation.h"
 
 #include <vector>
 #include "NFA.h"
 #include <stack>
 #include <iostream>
 
-using namespace std;
+namespace Operation{
 
 /*
  * To call this methods : Operation::KleenClosure(a);
  */
-class Operation{
+//class Operation{
 
-public:
+//public:
 //	static int num;
-	static NFA* Or(NFA* a, NFA* b){
+	NFA* Or(NFA* a, NFA* b){
 
 
 		NFA* cur=new NFA();
@@ -27,14 +35,14 @@ public:
 		a->accept->setState(NTH);
 		b->accept->setState(NTH);
 
-		cout<<"NFA Or\n";
+//		cout<<"NFA Or\n";
 
 
 		return cur;
 
 	}
 
-	static NFA* And(NFA* a, NFA* b){
+	NFA* And(NFA* a, NFA* b){
 
 		NFA* cur=new NFA();
 
@@ -45,13 +53,13 @@ public:
 		a->accept->setState(NTH);
 		b->accept->setState(NTH);
 
-		cout<<"NFA And\n";
+//		cout<<"NFA And\n";
 
 		return cur;
 
 	}
 
-	static NFA* KleenClosure(NFA* a){
+	NFA* KleenClosure(NFA* a){
 
 		NFA* cur=new NFA();
 
@@ -62,24 +70,25 @@ public:
 
 		a->accept->setState(NTH);
 
-		cout<<"NFA Kleen\n";
+//		cout<<"NFA Kleen\n";
 
 
 		return cur;
 	}
 
-	static NFA* positiveClosure(NFA* a){
+	NFA* positiveClosure(NFA* a){
 
 		NFA* cur=KleenClosure(a);
 
 		a->accept->setState(NTH);
 
-		cout<<"NFA Positive\n";
+//		cout<<"NFA Positive\n";
 
 
 		return And(a, cur);
 
 	}
 
-};
+}
+
 

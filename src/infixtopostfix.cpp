@@ -10,7 +10,7 @@ using namespace std;
 infixtopostfix::infixtopostfix() {
 	// TODO Auto-generated constructor stub
 	AND=10;
-	OR=6;
+	//OR=6;
 	KLEENE=7;
 	POSITIVE=8;
 
@@ -77,7 +77,7 @@ string infixtopostfix::infixtopostfix1(string infix, int size) {
 			ch=POSITIVE;
 
 		} else if (ch == '|') {
-			ch=OR;
+			ch='|'; // ^__^
 
 		} else if (ch == '&') {
 			ch=AND;
@@ -255,7 +255,7 @@ NFA* infixtopostfix::postfixToNFA(string postfix) {
 			//	cout<<s.size()<<endl;
 			NFA* op1 = new NFA(operand1);
 			NFA* op2 = new NFA(c2);
-			if (op_rator == OR) {
+			if (op_rator == '|') {
 				//cout<<"hna"<<endl;
 				result = Operation::Or(op1, op2);
 			} else {
@@ -279,7 +279,7 @@ NFA* infixtopostfix::postfixToNFA(string postfix) {
 			NFA* op2 = new NFA(c);
 			char opertor = s.top();
 			s.pop();
-			if (opertor == OR) {
+			if (opertor == '|') {
 				result = Operation::Or(result, op2);
 			} else {
 				result = Operation::And(result, op2);

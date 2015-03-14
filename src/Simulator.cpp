@@ -55,6 +55,7 @@ void Simulator:: simulate(vector<vector<Dstate *> > DFA_table,string token){
 			charToIndex[possible_input[i]]=i+1;
 		}
 	while(index<token.length()){
+			char current =token[index];
 
 	}
 
