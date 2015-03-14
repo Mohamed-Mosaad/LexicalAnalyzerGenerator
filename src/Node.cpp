@@ -6,12 +6,14 @@
  */
 
 #include "Node.h"
-
+#include "Operation.cpp"
 
 using namespace std;
+int num=0;
 
 Node::Node() {
-
+	id=num;
+	num++;
 }
 
 Node::~Node() {

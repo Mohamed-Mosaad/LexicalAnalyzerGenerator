@@ -1,6 +1,8 @@
 
 #include <vector>
 #include "NFA.h"
+#include <stack>
+#include <iostream>
 
 using namespace std;
 
@@ -10,7 +12,9 @@ using namespace std;
 class Operation{
 
 public:
+//	static int num;
 	static NFA* Or(NFA* a, NFA* b){
+
 
 		NFA* cur=new NFA();
 
@@ -22,6 +26,9 @@ public:
 
 		a->accept->setState(NTH);
 		b->accept->setState(NTH);
+
+		cout<<"NFA Or\n";
+
 
 		return cur;
 
@@ -38,6 +45,8 @@ public:
 		a->accept->setState(NTH);
 		b->accept->setState(NTH);
 
+		cout<<"NFA And\n";
+
 		return cur;
 
 	}
@@ -49,9 +58,12 @@ public:
 		cur->start->next.push_back(make_pair(cur->accept, epsillon));
 		cur->start->next.push_back(make_pair(a->start, epsillon));
 		a->accept->next.push_back(make_pair(cur->accept, epsillon));
-		a->accept->next.push_back(make_pair(a->accept, epsillon));
+		a->accept->next.push_back(make_pair(a->start, epsillon));
 
 		a->accept->setState(NTH);
+
+		cout<<"NFA Kleen\n";
+
 
 		return cur;
 	}
@@ -61,6 +73,9 @@ public:
 		NFA* cur=KleenClosure(a);
 
 		a->accept->setState(NTH);
+
+		cout<<"NFA Positive\n";
+
 
 		return And(a, cur);
 

@@ -11,24 +11,17 @@
 #include <set>
 #include <deque>
 #include <stack>
-#include <bitset>
-#include <algorithm>
-#include <functional>
-#include <numeric>
-#include <utility>
-#include <sstream>
+
 #include <iostream>
 #include <iomanip>
 #include <cstdio>
 #include <cmath>
 #include <cstdlib>
-#include <ctime>
-#include <memory.h>
-#include <cassert>
+
 #include<iostream>
 #include<cstring>
 #include<stack>
-#include <unordered_map>
+
 using namespace std;
 #ifndef REGEX2NFA_H_
 #define REGEX2NFA_H_

@@ -20,6 +20,7 @@ const char epsillon='\L';
 
 using namespace std;
 
+
 class Node {
 
 public:
@@ -28,6 +29,7 @@ public:
 	vector< pair<Node*, char> > next;
 	int getState();
 	void setState(int newState);
+	int id;
 
 private:
 	int state;
